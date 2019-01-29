@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// Test
+
 import "../../App.css";
 import LogoCodefever from "../Images/LogoCodefever.jpeg";
 
