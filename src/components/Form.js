@@ -28,7 +28,7 @@ class ConnectedForm extends Component {
     const { test1, test2 } = this.state;
     if (test1 !== "" && test2 !== "") {
       this.props.addUser({ test1, test2 });
-      this.setState({ test1: "", test2: "" });
+      this.setState({ test1: "", test2: "", error: "" });
     } else {
       this.setState({ error: "Fill both fields!" });
     }
