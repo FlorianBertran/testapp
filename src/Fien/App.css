@@ -1,0 +1,25 @@
+.navigation {
+  float: left;
+  margin: 10px;
+}
+
+.navigationBar {
+  background-color: #707070;
+  border: 2px;
+  border-color: #707070;
+}
+
+.links {
+  text-decoration: none;
+  color: red;
+}
+
+a.links :active {
+  background-color: #7bc043;
+}
+
+.logo {
+  width: 220;
+  height: 100;
+  margin: 10;
+}
