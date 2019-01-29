@@ -1,0 +1,9 @@
+.button {
+  background-color: chartreuse;
+  font-style: oblique;
+}
+
+.error {
+  font-weight: bold;
+  color: red;
+}

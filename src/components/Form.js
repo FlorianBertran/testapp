@@ -1,14 +1,21 @@
 import React, { Component } from "react";
-import "./App.css";
+import { connect } from "react-redux";
+import { addUser } from "../actions/actions";
+import "../css/Form.css";
 
-class App extends Component {
+const mapDispatchToProps = dispatch => {
+  return {
+    addUser: user => dispatch(addUser(user))
+  };
+};
+class ConnectedForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       test1: "",
       test2: "",
-      submitted: false
+      error: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -18,7 +25,13 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.setState({ submitted: true });
+    const { test1, test2 } = this.state;
+    if (test1 !== "" && test2 !== "") {
+      this.props.addUser({ test1, test2 });
+      this.setState({ test1: "", test2: "", error: "" });
+    } else {
+      this.setState({ error: "Fill both fields!" });
+    }
   }
 
   handleChange(e) {
@@ -27,8 +40,7 @@ class App extends Component {
   }
 
   render() {
-    const { test1, test2 } = this.state;
-    const label = this.state.submitted ? <label>test123</label> : null;
+    const { test1, test2, error } = this.state;
     return (
       <div className="App">
         <h2>test</h2>
@@ -51,15 +63,27 @@ class App extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="button">
-            <input type="submit" value="Submit" onSubmit={this.handleSubmit} />
+          <div>
+            <input
+              type="submit"
+              value="Submit"
+              onSubmit={this.handleSubmit}
+              className="button"
+            />
           </div>
         </form>
         <br />
-        {label}
+        <div className="error">
+          <label>{error}</label>
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+const Form = connect(
+  null,
+  mapDispatchToProps
+)(ConnectedForm);
+
+export default Form;
